@@ -1,13 +1,44 @@
+import { useRef } from "react";
 import "./App.css";
-import TopHeaderLine from "./components/TopHeaderLine";
+// import useScrollPercents from "./hooks/useScrollPercents";
 import FirstPage from "./pages/FirstPage";
+import SecondPage from "./pages/SecondPage";
+// import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 
 function App() {
-  return (
-    <div className=" h-screen  overflow-auto bg-[#242424]  pt-6">
-      <FirstPage />
+  const windowRef = useRef<HTMLDivElement>(null);
+  // useScrollPercents({ forwardedRef: windowRef });
+  // const ref = useRef<HTMLDivElement>(null);
+  // const { scrollYProgress, scrollY } = useScroll({
+  //   // container: windowRef,
+  //   target: ref,
+  //   // offset: ["start end", "end end"],
+  // });
 
-      <div className={`h-full bg-second`}></div>
+  // const opacity = useTransform(scrollY, [0, 1], [1, 0]);
+  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //   // alert(latest);
+  // });
+  return (
+    <div
+      ref={windowRef}
+      className="h-full snap-y snap-mandatory
+       sm:snap-none"
+    >
+      <div className="flex flex-1 flex-col bg-bgc">
+        <section className="  h-[100vh]  snap-end px-6 pt-6">
+          <FirstPage />
+        </section>
+        <section
+          // ref={ref}
+          className=" h-[300vh] snap-start  px-6  "
+        >
+          <SecondPage containerRef={windowRef} />
+        </section>
+        <section
+          className={`thirdSection h-screen snap-start bg-green`}
+        ></section>
+      </div>
     </div>
   );
 }

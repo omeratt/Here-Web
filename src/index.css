@@ -1,13 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+:root {
+  --bgc: #242424;
+  --second: #f5f1e6;
+  --green: #e5ff00;
+  --scroll: 0;
+}
 html,
 body,
 #root,
 #root > div {
   height: 100%;
+  padding: 0;
+}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.firstSection {
+  /* opacity: calc(1 - var(--scroll) / 85); */
+  /* translate: 0 calc(-1% * var(--scroll)); */
+}
+/* .thirdSection {
+  translate: 0 calc(-1% * max(var(--scroll), 125) -25 * 200 / 175);
+} */
+.secondSection {
+  /* translate: 0 calc(1% * max(var(--scroll), 120) - 20 * 100 / 50); */
+  /* translate: 0 calc(var(--scroll) * 1%); */
+  /* translate: 0 calc(var(--scroll) * 1%); */
+  /* translate: 0 calc(-1% * max(var(--scroll), 20) - 20); */
 }
 .line {
   width: 0;
@@ -20,8 +46,41 @@ body,
   animation: fade-in 3s both;
 }
 .borderAnimation {
-  box-shadow: 0px 0px 0px 0px #f5f1e6;
+  box-shadow: 0em 0em 0em 0em var(--second) none;
   animation: border-Animation 3s both;
+}
+.borderAnimation2 {
+  box-shadow: 0em 0em 0em 0em var(--second) none;
+  animation: border2-Animation 3s both;
+}
+.textHeader {
+  font-size: min(max(5.75vw, 4em), 5em);
+  line-height: calc(max(5.75vw, 4em) / 3.5);
+}
+.getStarted {
+  transition: 0.4s;
+}
+.getStarted:hover {
+  box-shadow: inset 0 0 0 2em var(--green);
+  color: var(--bgc);
+}
+arrowDown:hover,
+.arrowDown:hover * {
+  animation: arrowDown 2s infinite;
+}
+
+@keyframes arrowDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    translate: 0 20%;
+    stroke-width: 3px;
+    stroke: var(--green);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 @keyframes line-grow {
   0% {
@@ -33,7 +92,14 @@ body,
 }
 @keyframes border-Animation {
   100% {
-    box-shadow: 0 0 0 0.09em#f5f1e6;
+    box-shadow: 1px 0 0 0 var(--second) inset, -0.09em 0 0 0 var(--second) inset,
+      0 0.07em 0 0 var(--second) inset, 0 -0.07em 0 0 var(--second) inset;
+  }
+}
+@keyframes border2-Animation {
+  100% {
+    box-shadow: 0.09em 0 0 0 var(--second) inset,
+      -0.09em 0px 0 0 var(--second) inset;
   }
 }
 @keyframes fade-in {
@@ -42,5 +108,54 @@ body,
   }
   100% {
     opacity: 1;
+  }
+}
+@media screen and (max-width: 735px) {
+  .textHeader {
+    font-size: min(max(4.2vw, 4em), 2.8em);
+    line-height: calc(max(3.75vw, 4em) / 3.5);
+  }
+  .subtitle {
+    font-size: min(max(3.2vw, 3em), 1.2em);
+  }
+}
+@media screen and (max-width: 696px) {
+  .textHeader {
+    font-size: min(max(3.2vw, 3em), 2.8em);
+    line-height: calc(max(3.75vw, 4em) / 3.2);
+  }
+  .subtitle {
+    font-size: min(max(3.2vw, 2em), 1em);
+  }
+}
+@media screen and (max-width: 602px) {
+  .textHeader {
+    font-size: min(max(2.5vw, 2.5em), 2.5em);
+    line-height: calc(max(3.75vw, 4em) / 3.2);
+  }
+  .subtitle {
+    font-size: min(max(3.2vw, 2em), 1.3em);
+  }
+}
+@media screen and (max-width: 450px) {
+  .textHeader {
+    font-size: min(max(2.5vw, 2.5em), 1.8em);
+    line-height: calc(max(3.75vw, 4em) / 3.2);
+  }
+  .subtitle {
+    font-size: min(max(3.2vw, 2em), 1.04em);
+    line-height: calc(max(3.75vw, 4em) / 2.2);
+    letter-spacing: 0.02em;
+  }
+}
+@media screen and (min-width: 200px) and (max-width: 470px) {
+  .textHeader {
+    font-size: calc(min(max(1.1em, 7vw), 7vw));
+    line-height: calc(max(3.75vw, 4em) / 3.2);
+  }
+  .subtitle {
+    font-size: min(max(4.1vw, 0em), 1em);
+    line-height: calc(max(3.75vw, 4em) / 2.2);
+    letter-spacing: 0.02em;
   }
 }
