@@ -99,16 +99,16 @@ export default function SecondPage({}: Props) {
   const txtY3 = useSpring(
     useTransform(scrollYProgress, [0.65, 0.66], [-20, 0])
   );
-  const springY = useSpring(scrollYProgress, {
-    stiffness: 150,
-    damping: 30,
-    mass: 40,
-  });
-  const txtYPosition = useTransform(
-    springY,
-    [0, 0.55, 0.56],
-    ["-50rem", "-50rem", "10rem"]
-  );
+  // const springY = useSpring(scrollYProgress, {
+  //   stiffness: 150,
+  //   damping: 30,
+  //   mass: 40,
+  // });
+  // const txtYPosition = useTransform(
+  //   springY,
+  //   [0, 0.55, 0.56],
+  //   ["-50rem", "-50rem", "10rem"]
+  // );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // alert(latest);

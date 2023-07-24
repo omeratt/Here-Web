@@ -1,7 +1,7 @@
 import { DeviceFrameset } from "react-device-frameset";
 import "./devices.min.css";
 import Iphone from "/IphoneStart.svg";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import { MotionValue, motion } from "framer-motion";
 type Props = {
   opacityHeader?: MotionValue<any>;
@@ -22,12 +22,12 @@ export default function PhoneFrame({
   txtY1,
   txtY2,
   txtY3,
-  scale,
-}: Props) {
+}: //   scale,
+Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const aspect = 375 / 812;
-  const height = 500;
-  const width = height * aspect;
+  //   const aspect = 375 / 812;
+  //   const height = 500;
+  //   const width = height * aspect;
 
   return (
     <div className="relative flex h-full w-full items-center justify-center">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // import TopHeaderLine from "../components/TopHeaderLine";
 import { motion } from "framer-motion";
-type Props = {};
+// type Props = {};
 
 export default function ThirdPage() {
   return (
