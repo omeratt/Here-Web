@@ -52,7 +52,6 @@ export default function AA() {
     return () => clearTimeout(timer);
   }, [fontSize]);
 
-  useEffect(() => {}, []);
   interface This {
     target: string[];
     next: string[];

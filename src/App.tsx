@@ -3,6 +3,7 @@ import "./App.css";
 // import useScrollPercents from "./hooks/useScrollPercents";
 import FirstPage from "./pages/FirstPage";
 import SecondPage from "./pages/SecondPage";
+import ThirdPage from "./pages/ThirdPage";
 // import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 
 function App() {
@@ -35,9 +36,9 @@ function App() {
         >
           <SecondPage containerRef={windowRef} />
         </section>
-        <section
-          className={`thirdSection h-screen snap-start bg-green`}
-        ></section>
+        <section className={`h-screen snap-start `}>
+          <ThirdPage />
+        </section>
       </div>
     </div>
   );

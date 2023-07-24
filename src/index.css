@@ -57,6 +57,10 @@ body,
   font-size: min(max(5.75vw, 4em), 5em);
   line-height: calc(max(5.75vw, 4em) / 3.5);
 }
+.phoneHeader {
+  font-size: min(max(5.75vw, 4em), 5em);
+  line-height: calc(max(5.75vw, 4em) / 3.5);
+}
 .getStarted {
   transition: 0.4s;
 }
@@ -108,6 +112,55 @@ arrowDown:hover,
   }
   100% {
     opacity: 1;
+  }
+}
+@media screen and (max-width: 945px) {
+  .phoneHeader {
+    font-size: min(max(4.2vw, 4em), 2.8em);
+    line-height: calc(max(3.75vw, 4em) / 2.5);
+    /* top: 10%; */
+  }
+  /* .subtitle {
+    font-size: min(max(3.2vw, 3em), 1.2em);
+  } */
+}
+
+@media screen and (max-width: 805px) {
+  .phoneHeader {
+    font-size: max(4.2vw, 2.3em);
+    line-height: calc(max(3.75vw, 4em) / 2);
+    /* left: -5%; */
+    translate: -5% 0;
+    /* bottom: -20px; */
+    /* height: 100%; */
+    /* background-color: #e5ff00; */
+    /* top: 20%;
+    left: 60%; */
+    /* position: absolute; */
+    /* text-align: center; */
+  }
+  .phoneSubtitle {
+    font-size: min(max(3.2vw, 3em), 1em);
+    /* left: -5%; */
+    /* top: 10%;
+    line-height: 5rem; */
+    /* position: relative; */
+  }
+}
+@media screen and (max-width: 720px) {
+  .phoneHeader {
+    font-size: max(4.2vw, 2.3em);
+    line-height: calc(max(3.75vw, 4em) / 2);
+    /* top: -20%;
+    left: 10%; */
+    text-align: left;
+  }
+  .phoneSubtitle {
+    font-size: min(max(3.2vw, 3em), 1em);
+    /* left: 65%;
+    top: 10%;
+    position: relative; */
+    line-height: 5rem;
   }
 }
 @media screen and (max-width: 735px) {

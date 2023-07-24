@@ -7,6 +7,7 @@ import Slider from "../components/secondScreen/Slider";
 import Toggle from "../components/secondScreen/Toggle";
 import {
   motion,
+  useMotionValueEvent,
   // useMotionValueEvent,
   useScroll,
   useSpring,
@@ -56,9 +57,9 @@ export default function SecondPage({}: Props) {
       const maxVal =
         (-1 * window.innerWidth) / 2 + 18 + phoneContainerWidth / 2;
       const newVal = -(state - 0.3) * phoneContainerWidth * 4.5 * (100 / 40);
-      console.log({ maxVal, newVal, state });
+      // console.log({ maxVal, newVal, state });
       if (state > 0.55) {
-        return maxVal * 1.75;
+        return maxVal * 2;
       }
       if (newVal < maxVal) return maxVal;
       return newVal;
@@ -77,11 +78,42 @@ export default function SecondPage({}: Props) {
   const innerOpacity = useSpring(
     useTransform(scrollYProgress, [0.3, 0.4], [1, 0])
   );
+  const txtOpacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.55, 0.56], [0, 0, 1])
+  );
+  const txtOpacity1 = useSpring(
+    useTransform(scrollYProgress, [0.59, 0.61], [0, 1])
+  );
+  const txtOpacity2 = useSpring(
+    useTransform(scrollYProgress, [0.62, 0.64], [0, 1])
+  );
+  const txtOpacity3 = useSpring(
+    useTransform(scrollYProgress, [0.65, 0.66], [0, 1])
+  );
+  const txtY1 = useSpring(
+    useTransform(scrollYProgress, [0.59, 0.61], [-20, 0])
+  );
+  const txtY2 = useSpring(
+    useTransform(scrollYProgress, [0.62, 0.64], [-20, 0])
+  );
+  const txtY3 = useSpring(
+    useTransform(scrollYProgress, [0.65, 0.66], [-20, 0])
+  );
+  const springY = useSpring(scrollYProgress, {
+    stiffness: 150,
+    damping: 30,
+    mass: 40,
+  });
+  const txtYPosition = useTransform(
+    springY,
+    [0, 0.55, 0.56],
+    ["-50rem", "-50rem", "10rem"]
+  );
 
-  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
-  //   // alert(latest);
-  //   // console.log(latest);
-  // });
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // alert(latest);
+    console.log(latest);
+  });
 
   return (
     <motion.div
@@ -128,8 +160,16 @@ export default function SecondPage({}: Props) {
         style={{ x: translatePhone }}
         className="relative flex flex-1  border-second "
       >
-        <motion.div style={{ scale }} className="relative flex flex-1   ">
-          <PhoneFrame />
+        <motion.div style={{ scale }} className="relative flex flex-1 ">
+          <PhoneFrame
+            opacityHeader={txtOpacity}
+            opacity1={txtOpacity1}
+            opacity2={txtOpacity2}
+            opacity3={txtOpacity3}
+            txtY1={txtY1}
+            txtY2={txtY2}
+            txtY3={txtY3}
+          />
         </motion.div>
       </motion.div>
     </motion.div>
