@@ -6,7 +6,7 @@ export default function TopHeaderLine() {
   // const fontSize = useMemo(() => 0.0625 * 40, []);
   return (
     <div
-      className={`z-10 flex h-3 w-full flex-row items-center  justify-between px-6 font-txt text-[0.9em] text-second sm:text-[1.3em]`}
+      className={`z-10 flex h-3 w-full flex-row items-center  justify-between px-9 font-txt text-[0.9em] text-second sm:text-[1.3em]`}
     >
       <motion.div
         initial={{ x: "-100%", opacity: 0 }}
