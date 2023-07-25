@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import TopHeaderLine from "../components/TopHeaderLine";
 import { motion } from "framer-motion";
+// import videoBg from "/Here_Promo.mp4";
+
 export default function FirstPage() {
   return (
     <motion.div
-      className={`borderAnimation flex h-full flex-1 flex-col overflow-hidden rounded-t-3xl border-second   pt-6  font-txt text-second`}
+      className={`borderAnimation z-10  flex  h-full flex-1 flex-col overflow-hidden rounded-t-3xl border-second   pt-6 font-txt text-second opacity-80`}
     >
+      {/* <video
+        src={videoBg}
+        autoPlay
+        loop
+        muted
+        className="absolute  left-0 top-[65%] -z-0 h-[30%] w-[96%] object-contain opacity-20"
+      /> */}
       <TopHeaderLine />
       <motion.div
         initial={{ y: "-20%", opacity: 0, filter: "blur(0.2rem)" }}

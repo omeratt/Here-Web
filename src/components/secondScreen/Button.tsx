@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 
-type Props = {};
-export default function Button({}: Props) {
+type Props = {
+  center?: boolean;
+};
+export default function Button({ center = true }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
   useLayoutEffect(() => {
@@ -20,7 +22,9 @@ export default function Button({}: Props) {
   return (
     <motion.div
       ref={ref}
-      className="flex h-full w-full items-center justify-center"
+      className={`flex h-full w-full ${
+        center ? "items-center" : ""
+      } justify-center`}
     >
       <motion.div
         initial={{ scale: 0, opacity: 0, y: "-100%" }}

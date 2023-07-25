@@ -1,28 +1,36 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-// import useScrollPercents from "./hooks/useScrollPercents";
 import FirstPage from "./pages/FirstPage";
 import SecondPage from "./pages/SecondPage";
 import ThirdPage from "./pages/ThirdPage";
+import MobileSecondPage from "./pages/MobileSecondPage";
+
 // import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 
 function App() {
-  const windowRef = useRef<HTMLDivElement>(null);
-  // useScrollPercents({ forwardedRef: windowRef });
-  // const ref = useRef<HTMLDivElement>(null);
-  // const { scrollYProgress, scrollY } = useScroll({
-  //   // container: windowRef,
-  //   target: ref,
-  //   // offset: ["start end", "end end"],
-  // });
+  // const [windowSize, setWindowSize] = useState([
+  //   window.innerWidth,
+  //   window.innerHeight,
+  // ]);
+  const [isMobileDimensions, setIsMobileDimensions] = useState(false);
+  useEffect(() => {
+    const handleWindowResize = () => {
+      if (window.innerWidth < 690) {
+        setIsMobileDimensions(true);
+      } else {
+        setIsMobileDimensions(false);
+      }
+    };
 
-  // const opacity = useTransform(scrollY, [0, 1], [1, 0]);
-  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
-  //   // alert(latest);
-  // });
+    window.addEventListener("resize", handleWindowResize);
+    handleWindowResize();
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <div
-      ref={windowRef}
       className="h-full snap-y snap-mandatory
        sm:snap-none"
     >
@@ -31,10 +39,11 @@ function App() {
           <FirstPage />
         </section>
         <section
-          // ref={ref}
-          className=" h-[300vh] snap-start  px-6  "
+          className={`${
+            isMobileDimensions ? "h-screen" : "h-[300vh]"
+          } snap-start  px-6  `}
         >
-          <SecondPage containerRef={windowRef} />
+          {isMobileDimensions ? <MobileSecondPage /> : <SecondPage />}
         </section>
         <section className={`h-screen snap-start `}>
           <ThirdPage />
