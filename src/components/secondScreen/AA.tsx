@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 function toggleList(arr: string[], element: Element) {
   arr.forEach((className) => {
     element.classList.toggle(className);
@@ -10,47 +10,38 @@ export default function AA() {
   const [fontSize, setFontSize] = useState("");
   const [aWidth, setAWidth] = useState(0);
   const [width, setWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   const Aref = useRef<HTMLHeadingElement>(null);
-  useEffect(() => {
-    const A = document.querySelector<HTMLHeadingElement>(".prev-sibling");
-    if (!A) return;
-    const handleWindowResize = () => {
-      const container = document.querySelector<HTMLDivElement>(".AA");
-      if (!container) return;
-      `${Math.min(
-        container.clientWidth * 0.045,
-        container.clientHeight * 0.08
-      )}em`;
-      setAWidth(A.clientWidth);
+  const resize = useCallback(() => {
+    // setTimeout(() => {
+    if (!containerRef.current) return;
+    // }, 1000);
+    setTimeout(() => {
+      if (!containerRef.current) return;
       setFontSize(
         `${Math.min(
-          container.clientWidth * 0.045,
-          container.clientHeight * 0.08
-        )}em`
+          containerRef.current.clientWidth * 0.045 * 16,
+          containerRef.current.clientHeight * 0.08 * 16
+        )}px`
       );
-    };
-    window.addEventListener("resize", handleWindowResize);
+      setAWidth(
+        Math.min(
+          containerRef.current.clientWidth * 0.045 * 12,
+          containerRef.current.clientHeight * 0.08 * 12
+        )
+      );
+      setWidth(containerRef.current.clientWidth);
+      // setAWidth(Aref.current.clientWidth);
+    }, 0);
+  }, [containerRef]);
+
+  useLayoutEffect(() => {
+    window.addEventListener("resize", resize);
+    resize();
     return () => {
-      window.removeEventListener("resize", handleWindowResize);
+      window.removeEventListener("resize", resize);
     };
   }, []);
-
-  useEffect(() => {
-    const container = document.querySelector<HTMLDivElement>(".AA");
-    const A = document.querySelector<HTMLHeadingElement>(".prev-sibling");
-    if (!A || !container) return;
-    setWidth(container.clientWidth);
-    setFontSize(
-      `${Math.min(
-        container.clientWidth * 0.045,
-        container.clientHeight * 0.08
-      )}em`
-    );
-    const timer = setTimeout(() => {
-      setAWidth(A.clientWidth);
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, [fontSize]);
 
   interface This {
     target: string[];
@@ -88,6 +79,7 @@ export default function AA() {
       style={{
         fontSize,
       }}
+      ref={containerRef}
       className="AA relative mx-auto flex h-full w-full flex-row items-center justify-between font-bold   "
     >
       <h1

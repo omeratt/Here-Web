@@ -1,16 +1,33 @@
-import useResizeListener from "../../hooks/useResizeListener";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 type Props = {};
 
 export default function ArrowDown({}: Props) {
-  const { height } = useResizeListener("arrowContainer");
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const ref = useRef<HTMLDivElement>(null);
+  const resize = useCallback(() => {
+    if (!ref.current) return;
+    setSize({
+      width: ref.current.clientWidth,
+      height: ref.current.clientHeight,
+    });
+  }, []);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", resize);
+    resize();
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, [ref]);
+  // const { width, height } = useResizeListener("arrowContainer");
   // const svgH = height * 1;
-  const ratio = 88 / 78;
+  // const ratio = 88 / 78;
   return (
     <div
+      ref={ref}
       style={{ height: "40%" }}
-      className="flex items-center justify-center"
+      className="flex w-full items-center justify-center"
       id="arrowContainer"
     >
       <motion.div
@@ -19,8 +36,8 @@ export default function ArrowDown({}: Props) {
         whileInView={{ scale: 1, opacity: 1, y: 0 }}
       >
         <svg
-          height={height * ratio}
-          width={height}
+          // height={height * ratio}
+          width={Math.min(size.width * 0.6, size.height * 0.9)}
           viewBox={`0 0 ${78} ${98}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

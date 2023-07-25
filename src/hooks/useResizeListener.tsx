@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 
 const useResizeListener = (
   containerId: string
@@ -10,9 +10,9 @@ const useResizeListener = (
     if (!container) return;
     const { width, height } = container.getBoundingClientRect();
     // setSize({ width, height });
-    const handleResize = () => {
+    const handleResize = useCallback(() => {
       setSize({ width, height });
-    };
+    }, []);
 
     handleResize(); // Initial measurement
 

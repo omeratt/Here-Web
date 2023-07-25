@@ -199,9 +199,9 @@ export default function Cube({}: Props) {
         initial={{ scale: 0, opacity: 0, rotate: "150deg" }}
         transition={{ duration: 1.2 }}
         whileInView={{ scale: 1, opacity: 1, rotate: "0deg" }}
-        view-box={`0 0 ${width * 0.85} ${height * 0.85}`}
+        // view-box={`0 0 ${width * 0.85} ${width * 0.85}`}
         width={width}
-        height={height * 0.7}
+        height={Math.min(width, height * 0.7)}
         className="overflow-visible"
       ></motion.svg>
     </motion.div>
