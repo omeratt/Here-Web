@@ -5,14 +5,7 @@ import Button from "../components/secondScreen/Button";
 import Cube from "../components/secondScreen/Cube";
 import Slider from "../components/secondScreen/Slider";
 import Toggle from "../components/secondScreen/Toggle";
-import {
-  motion,
-  useMotionValueEvent,
-  // useMotionValueEvent,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import PhoneFrame from "../components/secondScreen/PhoneFrame";
 
 interface Props {
@@ -65,16 +58,12 @@ export default function SecondPage({}: Props) {
       return newVal;
     }),
     { stiffness: 150, damping: 30 }
-    // { bounce: -5, duration: 700 }
   );
 
   const scale = useSpring(
     useTransform(scrollYProgress, [0.3, 0.4, 0.55, 0.56], [0.5, 0.8, 0.9, 0.7])
   );
 
-  // const minusScale = useSpring(
-  //   useTransform(scrollYProgress, [0.3, 0.5], [1, 0.5])
-  // );
   const innerOpacity = useSpring(
     useTransform(scrollYProgress, [0.3, 0.4], [1, 0])
   );
