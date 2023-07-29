@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import FirstPage from "./pages/FirstPage";
 import SecondPage from "./pages/SecondPage";
 import ThirdPage from "./pages/ThirdPage";
 import MobileSecondPage from "./pages/MobileSecondPage";
-
-// import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-
 function App() {
-  // const [windowSize, setWindowSize] = useState([
-  //   window.innerWidth,
-  //   window.innerHeight,
-  // ]);
   const [isMobileDimensions, setIsMobileDimensions] = useState(false);
   useEffect(() => {
     const handleWindowResize = () => {
@@ -29,18 +22,22 @@ function App() {
     };
   }, []);
 
+  const containerRef = useRef(null);
+
   return (
     <div
-      className="h-full snap-y snap-mandatory
-       sm:snap-none"
+      id="myWeb"
+      className="h-full w-full snap-y snap-mandatory 
+         sm:snap-none"
     >
-      <div className="flex flex-1 flex-col bg-bgc">
+      <div className="flex  flex-1 flex-col bg-bgc" ref={containerRef}>
         <section className="  h-[100vh]  snap-end px-6 pt-6">
           <FirstPage />
         </section>
         <section
+          // id="secondSection"
           className={`${
-            isMobileDimensions ? "h-screen" : "h-[300vh]"
+            isMobileDimensions ? "h-screen" : "h-[300vh] "
           } snap-start  px-6  `}
         >
           {isMobileDimensions ? <MobileSecondPage /> : <SecondPage />}

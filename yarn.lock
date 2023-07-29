@@ -358,6 +358,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@studio-freight/lenis@^1.0.19":
+  version "1.0.19"
+  resolved "https://registry.npmjs.org/@studio-freight/lenis/-/lenis-1.0.19.tgz"
+  integrity sha512-0DZdjDaJqhYVxzcbj6Dpv/BHS/RLc4f6XYu/n0t0fUKatuvO5vtXW4gW4GHgJPiPIpamct7bg8hpihbjZ6fqpw==
+
 "@types/json-schema@^7.0.9":
   version "7.0.12"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.12.tgz"

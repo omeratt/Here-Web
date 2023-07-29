@@ -99,27 +99,17 @@ export default function SecondPage({}: Props) {
   const txtY3 = useSpring(
     useTransform(scrollYProgress, [0.65, 0.66], [-20, 0])
   );
-  // const springY = useSpring(scrollYProgress, {
-  //   stiffness: 150,
-  //   damping: 30,
-  //   mass: 40,
-  // });
-  // const txtYPosition = useTransform(
-  //   springY,
-  //   [0, 0.55, 0.56],
-  //   ["-50rem", "-50rem", "10rem"]
-  // );
 
-  useMotionValueEvent(scrollYProgress, "change", (_) => {
-    // alert(latest);
-    // console.log(latest);
-  });
+  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //   // alert(latest);
+  //   console.log(latest);
+  // });
 
   return (
     <motion.div
       // style={{ opacity }}
       // ref={ref}
-      className={`borderAnimation2 sticky top-0 flex h-screen flex-1 flex-row overflow-hidden border-second  font-txt   text-second `}
+      className={`borderAnimation2 sticky top-0 flex h-screen flex-1 flex-row    overflow-hidden  border-second  font-txt text-second `}
     >
       <motion.div
         style={{ opacity: innerOpacity, x: translateX }}
@@ -158,7 +148,7 @@ export default function SecondPage({}: Props) {
       <motion.div
         ref={phoneRef}
         style={{ x: translatePhone }}
-        className="relative flex flex-1  border-second "
+        className="relative flex flex-1  items-center justify-center border-second"
       >
         <motion.div style={{ scale }} className="relative flex  ">
           <PhoneFrame
