@@ -35,7 +35,6 @@ function App() {
           <FirstPage />
         </section>
         <section
-          // id="secondSection"
           className={`${
             isMobileDimensions ? "h-screen" : "h-[300vh] "
           } snap-start  px-6  `}
