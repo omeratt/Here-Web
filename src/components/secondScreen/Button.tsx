@@ -38,7 +38,8 @@ export default function Button({ center = true }: Props) {
             height: Math.min(width * 0.12, 75),
             fontSize: width * 0.05,
           }}
-          href="#"
+          target="_blank"
+          href="https://play.google.com/store/apps/details?id=com.fronend"
           className="getStarted flex items-center justify-center rounded-full border border-green"
         >
           Get started
